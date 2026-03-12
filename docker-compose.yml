@@ -1,0 +1,33 @@
+services:
+  registrar:
+    build: .
+    command: ["python", "lab9.py", "registrar"]
+    environment:
+      LISTEN_PORT: "58333"
+
+  node1:
+    build: .
+    depends_on: [registrar]
+    environment:
+      NODE_NAME: node1
+      REGISTRAR_HOST: registrar
+      REGISTRAR_PORT: "58333"
+      LISTEN_PORT: "58333"
+
+  node2:
+    build: .
+    depends_on: [registrar]
+    environment:
+      NODE_NAME: node2
+      REGISTRAR_HOST: registrar
+      REGISTRAR_PORT: "58333"
+      LISTEN_PORT: "58333"
+
+  node3:
+    build: .
+    depends_on: [registrar]
+    environment:
+      NODE_NAME: node3
+      REGISTRAR_HOST: registrar
+      REGISTRAR_PORT: "58333"
+      LISTEN_PORT: "58333"
